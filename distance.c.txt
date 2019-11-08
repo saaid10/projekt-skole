@@ -1,0 +1,41 @@
+#include "head.h"
+
+const uint8_t Measurments = 10;
+
+// Reads laser-sensor, and returns distance in cm
+double sensor_result()
+{
+    double result   = 0;
+    double distance = 0;
+    double sum      = 0;
+    double average  = 0;
+    int cnt         = 0;
+    
+    /* CURRENT Used Factors*/
+    /*
+    double p1       = -96.28;
+    double p2       = 630.5;
+    double p3       = -1452;
+    double p4       = 1313;
+    
+    while(cnt < Measurments)
+    {
+        if(ADC_DelSig_1_IsEndConversion(ADC_DelSig_1_RETURN_STATUS))
+        {
+            result  = ADC_DelSig_1_CountsTo_mVolts(ADC_DelSig_1_GetResult32());
+            sum     = sum + result;     
+            cnt++;
+        }
+    }
+    
+    average     = sum / Measurments;
+    average     = average / 1000;
+
+    distance    = (p1*pow(average, 3) + p2*pow(average, 2) + p3*average + p4);
+    distance    = (distance < 100 || distance > 250) ? -1 : distance;
+    */
+    
+    distance  = ADC_DelSig_1_CountsTo_mVolts(ADC_DelSig_1_GetResult32());
+
+    return distance;
+}
